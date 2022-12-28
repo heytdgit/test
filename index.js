@@ -13,7 +13,7 @@ program.version('1.0.0', '-v, --version')
             })
         } else if(templateName === "react") {
             console.log('clone template ...');
-            download('github.com/heytdgit/test.git', projectName, function (err) {
+            download('https://github.com/heytdgit/test.git', projectName, function (err) {
                 console.log(err ? 'Error' : 'Success')
             })
         } else {
