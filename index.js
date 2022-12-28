@@ -1,18 +1,23 @@
+#! /usr/bin/env node
 const program = require('commander');
-var process1 = require('child_process');
+const download = require('download-git-repo');
 //version 版本号
 //name 新项目名称
 program.version('1.0.0', '-v, --version')
-    .command('init <name>')
-    .action((name) => {
-        console.log('clone template ...');
-        process1.exec('git clone https://github.com/heytdgit/test.git ' + name, function(error, stdout, stderr) {
-            if (error !== null) {
-                console.log('exec error: ' + error);
-                return;
-            }
-            console.log(stdout);
-            console.log('clone success');
-        });
+    .command('init <templateName> <projectName>')
+    .action((templateName, projectName) => {
+        if (templateName === "vue") {
+            console.log('clone template ...');
+            download('github.com/heytdgit/test.git', projectName, function (err) {
+                console.log(err ? 'Error' : 'Success')
+            })
+        } else if(templateName === "react") {
+            console.log('clone template ...');
+            download('github.com/heytdgit/test.git', projectName, function (err) {
+                console.log(err ? 'Error' : 'Success')
+            })
+        } else {
+          console.error('A template name that does not exist')
+        }
     });
 program.parse(process.argv);
